@@ -21,8 +21,8 @@ const AccordionCard: React.FC<AccordionCardProps> = ({ id, title, text }) => {
         className={`flex flex-row w-full gap-6 items-center transition-all duration-150 pb-0 ${isOpen ? "pb-10" : ""}`}
       >
         <div className="text-6xl font-medium">{id}</div>
-        <div className="text-h3 grow">{title}</div>
-        <div className="border border-dark h-[58px] w-[58px] flex justify-center items-center rounded-full bg-light">
+        <div className="text-xl md:text-3xl lg:text-h3 grow">{title}</div>
+        <div className="border border-dark h-[58px] w-[58px] shrink-0 flex justify-center items-center rounded-full bg-light">
           {isOpen ? (
             <svg
               width="18"
