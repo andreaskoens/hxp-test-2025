@@ -107,7 +107,7 @@ const ContactForm = () => {
 
   if (!mounted) return null;
   return (
-    <div className="bg-light p-14 px-[6.5rem] rounded-[2.75rem] relative overflow-hidden">
+    <div className="bg-light py-14 px-14 md:px-20 lg:px-[6.5rem] rounded-[2.75rem] relative overflow-hidden">
       <div className="relative w-full lg:w-1/2 z-1">
         <div className="space-y-6">
           <Form {...form}>
