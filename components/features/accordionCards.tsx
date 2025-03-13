@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 
 type AccordionCardProps = {
@@ -13,17 +12,17 @@ const AccordionCard: React.FC<AccordionCardProps> = ({ id, title, text }) => {
 
   return (
     <div
-      className={`p-10 rounded-[2.75rem] border border-dark shadow-[0_5px_0_0_var(--color-dark)] text-lg cursor-pointer ${
-        isOpen ? " bg-brand" : "bg-light"
-      } ${id !== 1 ? "mt-7" : ""}`}
+      className={`p-10 rounded-[2.75rem] border border-dark shadow-[0_5px_0_0_#191A23] text-lg cursor-pointer transition-all duration-150
+        ${isOpen ? "bg-brand hover:bg-brand" : "bg-light hover:bg-light-hover"}
+        ${id !== 1 ? "mt-7" : ""}`}
       onClick={() => setIsOpen(!isOpen)}
     >
       <div
-        className={`flex flex-row w-full gap-6 items-center ${isOpen ? "pb-10" : ""}`}
+        className={`flex flex-row w-full gap-6 items-center transition-all duration-150 pb-0 ${isOpen ? "pb-10" : ""}`}
       >
         <div className="text-6xl font-medium">{id}</div>
         <div className="text-h3 grow">{title}</div>
-        <div className="border border-dark h-[58px] w-[58px] flex justify-center items-center rounded-[4rem] bg-light">
+        <div className="border border-dark h-[58px] w-[58px] flex justify-center items-center rounded-full bg-light">
           {isOpen ? (
             <svg
               width="18"
@@ -51,11 +50,12 @@ const AccordionCard: React.FC<AccordionCardProps> = ({ id, title, text }) => {
         </div>
       </div>
       <div
-        className={`w-full overflow-hidden ${
-          isOpen
-            ? "border-t border-dark h-auto pt-7"
-            : "h-0 border-t border-transparent"
-        }`}
+        className={`w-full overflow-hidden transition-all duration-150
+          ${
+            isOpen
+              ? "border-t border-dark h-auto pt-7"
+              : "h-0 border-t border-transparent"
+          }`}
       >
         {text}
       </div>

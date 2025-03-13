@@ -2,12 +2,12 @@
 
 import React, { useCallback, useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { LogoPositivus } from "@/components/icons/logoPositivus";
 import { SocialLinkedin } from "@/components/icons/socialLinkedin";
 import { SocialFacebook } from "@/components/icons/socialFacebook";
 import { SocialTwitter } from "@/components/icons/socialTwitter";
 import { showToast } from "../features/toast";
+import NewsletterSubscription from "./newsletterSubscription";
 
 export const Footer = () => {
   const handleNavigation = useCallback((url: string) => {
@@ -35,15 +35,15 @@ export const Footer = () => {
         <div className="bg-dark rounded-t-[2.75rem] text-light px-[3.75rem] pt-[3.75rem] pb-[3.125rem]">
           <div className="flex justify-between flex-wrap">
             <Button
-              variant={"link"}
-              className="justify-start cursor-pointer w-full lg:w-auto !px-0"
+              variant={"logo"}
+              className="justify-start cursor-pointer lg:w-auto !px-0 order-1"
               onClick={() => {
                 handleNavigation("/");
               }}
             >
               <LogoPositivus color="#f3f3f3" width={180} height={29} />
             </Button>
-            <div className="flex gap-5 md:gap-8 xl:gap-10">
+            <div className="flex gap-5 justify-between w-full lg:w-auto md:gap-6 xl:gap-10 order-3 lg:order-2 mt-5 lg:mt-0">
               {menuEntries.map((item, i) => (
                 <Button
                   key={`menu-entry-${i}`}
@@ -57,7 +57,7 @@ export const Footer = () => {
                 </Button>
               ))}
             </div>
-            <div className="flex gap-5">
+            <div className="flex gap-5 order-2 lg:order-3">
               <Button
                 variant={"link"}
                 className="m-0 p-0 cursor-pointer"
@@ -88,7 +88,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          <div className="mt-16 flex flex-col lg:flex-row gap-20">
+          <div className="mt-16 flex flex-col lg:flex-row gap-10 lg:gap-20">
             <div className="shrink text-lg lg:max-w-[33.333%]">
               <div className="w-fit text-xl bg-[#B9FF66] text-dark font-medium px-2 rounded-[7px] mb-7">
                 Contact us:
@@ -100,19 +100,7 @@ export const Footer = () => {
               </div>
             </div>
             <div className="grow">
-              <div className="bg-[#292A32] h-full rounded-[14px] p-10 flex items-center justify-center xl:justify-between flex-col xl:flex-row">
-                <Input
-                  type="email"
-                  placeholder="Email"
-                  className="xl:grow !text-xl font-normal py-5 px-9 h-[68px] rounded-[14px] placeholder:text-xl"
-                />
-                <Button
-                  variant={"default"}
-                  className="mt-10 xl:mt-0 xl:ml-10 xl:shrink bg-[#B9FF66] text-dark text-xl font-normal py-5 px-9 h-[68px] cursor-pointer rounded-[14px] w-full xl:w-fit"
-                >
-                  Subscribe to news
-                </Button>
-              </div>
+              <NewsletterSubscription />
             </div>
           </div>
 

@@ -12,18 +12,16 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40",
+          "text-light text-xl font-normal cursor-pointer rounded-[14px] order-2 xl:order-3 border bg-dark hover:bg-dark-faded transition-all duration-150",
         outline:
-          "border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground",
-        secondary:
-          "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+          "border-dark text-xl font-normal cursor-pointer rounded-[14px] order-2 xl:order-3 border border-input bg-background hover:bg-light transition-all duration-150",
+        brand:
+          "text-dark text-xl font-normal cursor-pointer rounded-[14px] order-2 xl:order-3 border bg-brand hover:bg-brand-hover transition-all duration-150",
+        link: "!m-0 !p-0 text-xl font-normal cursor-pointer text-primary underline-offset-4 hover:underline hover:opacity-75 transition-all duration-150",
+        logo: "!m-0 !p-0 w-fit text-xl font-normal cursor-pointer text-primary underline-offset-4 hover:opacity-75 transition-all duration-150",
       },
       size: {
-        default: "h-9 px-4 py-2 has-[>svg]:px-3",
+        default: "h-auto py-5 px-9 has-[>svg]:px-3",
         sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
         lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
         icon: "size-9",

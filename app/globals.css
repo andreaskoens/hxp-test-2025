@@ -5,9 +5,11 @@
 @theme {
     /* Colors */
     --color-brand: #b9ff66;
+    --color-brand-hover: #a8e95e;
     --color-dark: #191a23;
     --color-dark-faded: #292a32;
     --color-light: #f3f3f3;
+    --color-light-hover: #e8e8e8;
     --color-light-2: #898989;
 
     /* Font size */
@@ -53,164 +55,22 @@
     }
 }
 
-/* Page containers */
-
-.wrap {
-    width: 100%;
-    padding: 1.5rem 2.5rem 0 2.5rem;
-}
-@media (min-width: 768px) {
+@layer components {
     .wrap {
-        padding: 4rem 6rem 0 6rem;
+        width: 100%;
+        padding: 1.5rem 1.75rem 0 1.75rem;
+        overflow: hidden;
     }
-}
 
-/* .sectionTitle {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    white-space: nowrap;
-    max-width: 70%;
-    h2 {
-        border-radius: 7px;
-        background: var(--color-brand);
-        line-height: 1em;
-        font-weight: 600;
-        font-size: 40px;
-        padding: 0.2em;
-        margin-right: 2.5rem;
+    @media (min-width: 768px) {
+        .wrap {
+            padding: 1.5rem 2.5rem 0 2.5rem;
+        }
     }
-    p {
-        font-size: 18px;
-        font-weight: 400;
-        line-height: 1.2em;
-        text-wrap: balance;
-    }
-} */
 
-.serviceCard {
-    padding: 3rem;
-    border-radius: 2.75rem;
-    border: 1px solid var(--color-dark);
-    box-shadow: 0 5px 0 0 var(--color-dark);
-    h3 span {
-        display: inline;
-        font-weight: 500;
-        font-size: 30px;
-        line-height: 1.25em;
-        border-radius: 7px;
-        padding: 0em 0.2em;
-
-        box-decoration-break: clone;
-        background-color: var(--color-brand);
-        box-shadow:
-            0.1em 0 0 var(--color-brand),
-            -0.1em 0 0 var(--color-brand);
-    }
-    a {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        .arrow {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 40px;
-            width: 40px;
-            margin-right: 0.75em;
-            border-radius: 20px;
-            background: var(--color-dark);
-            transition: all 100ms ease-in-out;
+    @media (min-width: 1024px) {
+        .wrap {
+            padding: 4rem 6rem 0 6rem;
         }
-        &:hover {
-            .arrow {
-                transform: rotate(30deg);
-            }
-        }
-    }
-    &.light {
-        background-color: var(--color-light);
-        h3 span {
-            background-color: var(--color-brand);
-            box-shadow:
-                0.1em 0 0 var(--color-brand),
-                -0.1em 0 0 var(--color-brand);
-            color: var(--color-dark);
-        }
-        a {
-            color: var(--color-dark);
-            .arrow {
-                background-color: var(--color-dark);
-                svg path {
-                    fill: var(--color-brand);
-                }
-            }
-        }
-    }
-    &.dark {
-        background-color: var(--color-dark);
-        h3 span {
-            background-color: var(--color-light);
-            box-shadow:
-                0.1em 0 0 var(--color-light),
-                -0.1em 0 0 var(--color-light);
-            color: var(--color-dark);
-        }
-        a {
-            color: var(--color-light);
-            .arrow {
-                background-color: var(--color-light);
-                svg path {
-                    fill: var(--color-dark);
-                }
-            }
-        }
-    }
-    &.green {
-        background-color: var(--color-brand);
-        h3 span {
-            background-color: var(--color-light);
-            box-shadow:
-                0.1em 0 0 var(--color-light),
-                -0.1em 0 0 var(--color-light);
-            color: var(--color-dark);
-        }
-        a {
-            color: var(--color-dark);
-            .arrow {
-                background-color: var(--color-dark);
-                svg path {
-                    fill: var(--color-brand);
-                }
-            }
-        }
-    }
-}
-
-.makeHappen {
-    background-color: var(--color-light);
-    color: var(--color-dark);
-    max-height: 350px;
-    border-radius: 2.75rem;
-    display: flex;
-}
-
-.studies {
-    border-radius: 2.75rem;
-    .card + .card {
-        border-left: 1px solid var(--color-light);
-    }
-}
-
-.teamCard {
-    padding: 3rem;
-    border-radius: 2.75rem;
-    border: 1px solid var(--color-dark);
-    box-shadow: 0 5px 0 0 var(--color-dark);
-    .about {
-        margin-top: 1.75rem;
-        padding-top: 1.75rem;
-        border-top: 1px solid var(--color-dark);
-        font-size: 1.125rem;
     }
 }

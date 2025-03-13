@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,7 +19,7 @@ import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import emailjs from "@emailjs/browser";
 
-// Create a schema for form validation
+// Schemas -------------------------------------------
 const formSchema = z.object({
   contactType: z.enum(["sayHi", "getQuote"], {
     required_error: "Please select a contact type.",
@@ -36,6 +36,9 @@ const formSchema = z.object({
 });
 
 const ContactForm = () => {
+  // Variables -------------------------------------------
+
+  const [mounted, setMounted] = React.useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     success: boolean;
@@ -51,6 +54,8 @@ const ContactForm = () => {
       message: "",
     },
   });
+
+  // Functions -------------------------------------------
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
@@ -92,6 +97,15 @@ const ContactForm = () => {
     }
   };
 
+  // Effects -------------------------------------------
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Renders -------------------------------------------
+
+  if (!mounted) return null;
   return (
     <div className="bg-light p-14 px-[6.5rem] rounded-[2.75rem] relative overflow-hidden">
       <div className="relative w-full lg:w-1/2 z-1">
@@ -223,12 +237,7 @@ const ContactForm = () => {
                 </div>
               )}
 
-              <Button
-                variant={"default"}
-                type="submit"
-                disabled={isSubmitting}
-                className="bg-dark text-light text-xl font-normal py-5 px-9 h-auto cursor-pointer rounded-[14px] w-full"
-              >
+              <Button type="submit" disabled={isSubmitting} className="w-full">
                 {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </form>

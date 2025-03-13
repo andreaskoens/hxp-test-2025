@@ -25,7 +25,7 @@ export default function RootLayout({
       <head>
         <meta
           name="viewport"
-          content="width=400, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          content="width=580, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </head>
       <body className={`${spaceGrotesk.variable} antialiased`}>

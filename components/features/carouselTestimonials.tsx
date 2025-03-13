@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/carousel";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import { UseEmblaCarouselType } from "embla-carousel-react";
 
 type CarouselTestimonialProps = {
   text: string;
@@ -62,14 +63,12 @@ type CarouselTestimonialsProps = {
 const CarouselTestimonials: React.FC<CarouselTestimonialsProps> = ({
   items,
 }) => {
-  const [api, setApi] = useState<any>();
+  const [api, setApi] = useState<UseEmblaCarouselType[1]>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (!api) {
-      return;
-    }
+    if (!api) return;
 
     setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap());

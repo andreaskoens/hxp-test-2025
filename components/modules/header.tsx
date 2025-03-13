@@ -1,14 +1,15 @@
 "use client";
-
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { LogoPositivus } from "@/components/icons/logoPositivus";
 import { showToast } from "../features/toast";
 
 export const Header = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const handleNavigation = useCallback((url: string) => {
     console.log(url);
-
+    setMobileMenuOpen(false);
     showToast({
       message: "Navigation successful",
       variant: "success",
@@ -25,46 +26,122 @@ export const Header = () => {
     ];
   }, []);
 
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
   return (
-    <div className="wrap flex-wrap flex gap-10 items-center">
-      <Button
-        variant={"link"}
-        className="grow justify-start cursor-pointer order-1"
-        onClick={() => {
-          handleNavigation("/");
-        }}
-      >
-        <LogoPositivus />
-      </Button>
-      <div
-        className="
-          flex gap-10 justify-end
-          order-3 w-full
-          xl:order-2 xl:w-auto
-        "
-      >
-        {menuEntries.map((item, i) => (
+    <div className="wrap relative">
+      {/* Desktop Header */}
+      <div className="hidden md:flex flex-wrap gap-10 items-center">
+        <div className="grow">
           <Button
-            key={`menu-entry-${i}`}
-            variant={"link"}
-            className="m-0 p-0 text-xl font-normal cursor-pointer"
+            variant={"logo"}
             onClick={() => {
-              handleNavigation(item.href);
+              handleNavigation("/");
             }}
           >
-            {item.label}
+            <LogoPositivus />
           </Button>
-        ))}
+        </div>
+        <div
+          className="
+            flex gap-10
+            order-3 w-full
+            justify-between lg:justify-end
+            xl:order-2 xl:w-auto
+          "
+        >
+          {menuEntries.map((item, i) => (
+            <Button
+              key={`menu-entry-${i}`}
+              variant={"link"}
+              onClick={() => {
+                handleNavigation(item.href);
+              }}
+            >
+              {item.label}
+            </Button>
+          ))}
+        </div>
+        <Button
+          variant={"outline"}
+          onClick={() => {
+            handleNavigation("/quote");
+          }}
+        >
+          Request a quote
+        </Button>
       </div>
-      <Button
-        variant={"outline"}
-        className="border-dark text-xl font-normal py-5 px-9 h-auto cursor-pointer rounded-[14px] order-2 xl:order-3"
-        onClick={() => {
-          handleNavigation("/quote");
-        }}
+
+      {/* Mobile Header */}
+      <div className="flex md:hidden items-center justify-between w-full py-4 px-2">
+        <Button
+          variant={"logo"}
+          onClick={() => {
+            handleNavigation("/");
+          }}
+        >
+          <LogoPositivus />
+        </Button>
+
+        {/* Hamburger Menu Button */}
+        <button
+          className="flex flex-col justify-center items-center w-10 h-10 gap-1.5 focus:outline-none"
+          onClick={toggleMobileMenu}
+          aria-label="Toggle menu"
+        >
+          <span
+            className={`block w-6 h-0.5 bg-dark transition-transform duration-300 ${
+              mobileMenuOpen ? "transform rotate-45 translate-y-2" : ""
+            }`}
+          ></span>
+          <span
+            className={`block w-6 h-0.5 bg-dark transition-opacity duration-300 ${
+              mobileMenuOpen ? "opacity-0" : "opacity-100"
+            }`}
+          ></span>
+          <span
+            className={`block w-6 h-0.5 bg-dark transition-transform duration-300 ${
+              mobileMenuOpen ? "transform -rotate-45 -translate-y-2" : ""
+            }`}
+          ></span>
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`
+          absolute right-14 top-24 z-50 bg-light border border-dark shadow-lg rounded-lg py-6 px-6 md:hidden w-64
+          transition-all duration-300 ease-in-out
+          cursor-pointer
+          ${mobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"}
+        `}
       >
-        Request a quote
-      </Button>
+        <div className="flex flex-col space-y-6 justify-start items-start gap-4">
+          {menuEntries.map((item, i) => (
+            <Button
+              key={`mobile-menu-entry-${i}`}
+              variant={"link"}
+              className=""
+              onClick={() => {
+                handleNavigation(item.href);
+              }}
+            >
+              {item.label}
+            </Button>
+          ))}
+          <Button
+            variant={"outline"}
+            className="bg-white w-full hover:bg-light-hover"
+            onClick={() => {
+              handleNavigation("/quote");
+            }}
+          >
+            Request a quote
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
